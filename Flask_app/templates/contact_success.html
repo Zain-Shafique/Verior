@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Message Sent - Contact{% endblock %}
+
+{% block content %}
+<h1>Thank You!</h1>
+<p>Your message has been successfully submitted. Here's what we received:</p>
+
+<div style="background-color: #f8f9fa; padding: 20px; border-radius: 8px; border-left: 4px solid #28a745;">
+    <h2>Message Details:</h2>
+    <p><strong>Name:</strong> {{ data.name }}</p>
+    <p><strong>Email:</strong> {{ data.email }}</p>
+    <p><strong>Message:</strong></p>
+    <p style="background-color: white; padding: 15px; border-radius: 4px; border: 1px solid #dee2e6;">{{ data.message }}</p>
+</div>
+
+<p>We'll get back to you within 24 hours!</p>
+
+<p><a href="{{ url_for('home') }}" class="btn">← Back to Home</a></p>
+
+<p><strong>Route Info:</strong> This page displays the POST data submitted through the contact form.</p>
+{% endblock %}

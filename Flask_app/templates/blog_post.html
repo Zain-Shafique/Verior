@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+
+{% block title %}Blog Post - {{ slug }}{% endblock %}
+
+{% block content %}
+<div style="background-color: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+    <h1>📝 {{ slug.replace('-', ' ').title() }}</h1>
+    <p><strong>📅 Published:</strong> 
+        {% set month_names = ['', 'January', 'February', 'March', 'April', 'May', 'June', 
+                              'July', 'August', 'September', 'October', 'November', 'December'] %}
+        {{ month_names[month] }} {{ year }}
+    </p>
+    <p><strong>🏷️ Article ID:</strong> {{ slug }}</p>
+</div>
+
+<h2>🎯 URL Parameters Working Successfully!</h2>
+<div style="background-color: #e8f5e8; padding: 15px; border-radius: 5px; border-left: 4px solid #28a745; margin: 20px 0;">
+    <h3>✅ Captured Parameters:</h3>
+    <ul>
+        <li><strong>Year:</strong> {{ year }} (Integer parameter)</li>
+        <li><strong>Month:</strong> {{ month }} (Integer parameter)</li>
+        <li><strong>Slug:</strong> {{ slug }} (String parameter)</li>
+    </ul>
+    <p><strong>Current URL:</strong> <code>/blog/{{ year }}/{{ month }}/{{ slug }}</code></p>
+</div>
+
+<!-- Dynamic content based on the slug -->
+<h2>📖 Article Content</h2>
+{% if slug == 'flask-tutorial' %}
+    <div style="background-color: #fff3cd; padding: 20px; border-radius: 8px; border-left: 4px solid #ffc107;">
+        <h3>🐍 Flask Tutorial: Getting Started</h3>
+        <p><strong>Published:</strong> {{ month_names[month] }} {{ year }}</p>
+        <p><strong>Reading Time:</strong> 15 minutes</p>
+        <p><strong>Difficulty:</strong> Beginner</p>
+        
+        <h4>What You'll Learn:</h4>
+        <ul>
+            <li>Setting up a Flask development environment</li>
+            <li>Creating your first Flask routes</li>
+            <li>Working with templates and static files</li>
+            <li>Handling forms and user input</li>
+            <li>Understanding request/response cycle</li>
+        </ul>
+        
+        <h4>Article Summary:</h4>
+        <p>Flask is a lightweight and flexible Python web framework that's perfect for beginners and experienced developers alike. In this comprehensive tutorial, we'll walk through the fundamentals of Flask development, from installation to deployment.</p>
+        
+        <h4>Key Topics Covered:</h4>
+        <ul>
+            <li><strong>Installation:</strong> Setting up Flask in a virtual environment</li>
+            <li><strong>Basic Routing:</strong> Creating URL endpoints</li>
+            <li><strong>Templates:</strong> Using Jinja2 for dynamic content</li>
+            <li><strong>Forms:</strong> Processing user input securely</li>
+            <li><strong>Best Practices:</strong> Code organization and security</li>
+        </ul>
+    </div>
+{% elif slug == 'python-tips' %}
+    <div style="background-color: #cce5ff; padding: 20px; border-radius: 8px; border-left: 4px solid #007bff;">
+        <h3>🐍 Python Tips and Tricks</h3>
+        <p><strong>Published:</strong> {{ month_names[month] }} {{ year }}</p>
+        <p><strong>Reading Time:</strong> 10 minutes</p>
+        <p><strong>Difficulty:</strong> Intermediate</p>
+        
+        <h4>Featured Tips:</h4>
+        <ul>
+            <li>List comprehensions for cleaner code</li>
+            <li>Using enumerate() effectively</li>
+            <li>Dictionary comprehensions and when to use them</li>
+            <li>The power of f-strings for string formatting</li>
+            <li>Context managers and the 'with' statement</li>
+        </ul>
+        
+        <p><strong>Pro Tip:</strong> These techniques can make your Python code more readable and efficient!</p>
+    </div>
+{% else %}
+    <div style="background-color: #e9ecef; padding: 20px; border-radius: 8px; border-left: 4px solid #6c757d;">
+        <h3>📄 {{ slug.replace('-', ' ').title() }}</h3>
+        <p><strong>Published:</strong> {{ month_names[month] }} {{ year }}</p>
+        <p><strong>Reading Time:</strong> Variable</p>
+        
+        <p>This is a dynamically generated blog post based on your URL parameters:</p>
+        <ul>
+            <li><strong>Year:</strong> {{ year }}</li>
+            <li><strong>Month:</strong> {{ month }}</li>
+            <li><strong>Slug:</strong> {{ slug }}</li>
+        </ul>
+        
+        <p>The content adapts based on the URL you visit, demonstrating Flask's powerful routing system!</p>
+    </div>
+{% endif %}
+
+<h2>🧪 Test Different Blog Posts</h2>
+<p>Try these different blog post URLs to see how multiple parameters work:</p>
+
+<div class="service-links">
+    <div class="service-card">
+        <a href="{{ url_for('blog_post', year=2024, month=1, slug='flask-tutorial') }}">🐍 Flask Tutorial</a>
+        <p>January 2024 • Beginner Guide</p>
+    </div>
+    <div class="service-card">
+        <a href="{{ url_for('blog_post', year=2024, month=3, slug='python-tips') }}">💡 Python Tips</a>
+        <p>March 2024 • Intermediate</p>
+    </div>
+</div>
+
+<h2>⚙️ Technical Details</h2>
+<p><strong>Route Pattern:</strong> <code>/blog/&lt;int:year&gt;/&lt;int:month&gt;/&lt;slug&gt;</code></p>
+<p><strong>Parameter Types:</strong></p>
+<ul>
+    <li><code>&lt;int:year&gt;</code> - Converts to integer automatically</li>
+    <li><code>&lt;int:month&gt;</code> - Converts to integer automatically</li>
+    <li><code>&lt;slug&gt;</code> - Remains as string</li>
+</ul>
+
+<p><strong>Flask Magic:</strong> Notice how Flask automatically converts the year and month to integers, so you can do math operations like <code>{{ year + 1 }}</code>!</p>
+
+{% endblock %}
