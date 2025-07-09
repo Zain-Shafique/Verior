@@ -5,7 +5,7 @@
 Create the following directory structure:
 
 ```
-flask-routes-app/
+Flask_app/
 ├── app.py
 ├── templates/
 │   ├── base.html
