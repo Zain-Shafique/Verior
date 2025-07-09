@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Flask App{% endblock %}
+
+{% block content %}
+<h1>Welcome to Flask Demo App</h1>
+<p>This is a demonstration of Flask routing with multiple pages and form handling.</p>
+
+<h2>Features Demonstrated:</h2>
+<ul>
+    <li>Multiple routes (/about, /contact, /services)</li>
+    <li>Route parameters (dynamic URLs)</li>
+    <li>Navigation menu</li>
+    <li>POST form handling</li>
+    <li>Template inheritance</li>
+</ul>
+
+<h2>Quick Navigation:</h2>
+<div class="service-links">
+    <div class="service-card">
+        <a href="{{ url_for('about') }}">About Us</a>
+        <p>Learn more about our company</p>
+    </div>
+    <div class="service-card">
+        <a href="{{ url_for('services') }}">Our Services</a>
+        <p>Explore what we offer</p>
+    </div>
+    <div class="service-card">
+        <a href="{{ url_for('contact') }}">Contact Us</a>
+        <p>Get in touch with us</p>
+    </div>
+</div>
+{% endblock %}
