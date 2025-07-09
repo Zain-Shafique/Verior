@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}{{ service_name }} - Services{% endblock %}
+
+{% block content %}
+<h1>{{ service_name }}</h1>
+<p>You're viewing details for: <strong>{{ service_type }}</strong></p>
+
+<h2>Service Details</h2>
+{% if service_type == 'web' %}
+    <p>Our web development services include:</p>
+    <ul>
+        <li>Custom web applications</li>
+        <li>E-commerce platforms</li>
+        <li>Content management systems</li>
+        <li>Progressive web apps</li>
+    </ul>
+{% elif service_type == 'mobile' %}
+    <p>Our mobile app development services include:</p>
+    <ul>
+        <li>Native iOS and Android apps</li>
+        <li>Cross-platform solutions</li>
+        <li>App store optimization</li>
+        <li>Mobile app maintenance</li>
+    </ul>
+{% elif service_type == 'design' %}
+    <p>Our UI/UX design services include:</p>
+    <ul>
+        <li>User interface design</li>
+        <li>User experience research</li>
+        <li>Wireframing and prototyping</li>
+        <li>Design system creation</li>
+    </ul>
+{% elif service_type == 'consulting' %}
+    <p>Our technical consulting services include:</p>
+    <ul>
+        <li>Architecture review</li>
+        <li>Technology stack recommendations</li>
+        <li>Performance optimization</li>
+        <li>Security audits</li>
+    </ul>
+{% else %}
+    <p>Service not found. Please check the URL or return to our <a href="{{ url_for('services') }}">services page</a>.</p>
+{% endif %}
+
+<p><a href="{{ url_for('services') }}" class="btn">← Back to All Services</a></p>
+
+<p><strong>Route Info:</strong> This page uses the route parameter <code>{{ service_type }}</code> to display specific content.</p>
+{% endblock %}

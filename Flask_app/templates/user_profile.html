@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block title %}Profile: {{ username }}{% endblock %}
+
+{% block content %}
+<h1>User Profile: {{ username }}</h1>
+<p>Welcome to {{ username }}'s profile page!</p>
+
+<div style="background-color: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
+    <h2>👤 Profile Information</h2>
+    <p><strong>Username:</strong> {{ username }}</p>
+    <p><strong>Profile URL:</strong> <code>/user/{{ username }}</code></p>
+    <p><strong>Member since:</strong> January 2024</p>
+    
+    <!-- Dynamic content based on username -->
+    {% if username == 'alice' %}
+        <p><strong>Role:</strong> Frontend Developer</p>
+        <p><strong>Skills:</strong> React, JavaScript, CSS</p>
+        <p><strong>Bio:</strong> Passionate about creating beautiful user interfaces and smooth user experiences.</p>
+        <p><strong>Projects:</strong> E-commerce website, Portfolio site, Mobile app UI</p>
+    {% else %}
+        <p><strong>Role:</strong> Developer</p>
+        <p><strong>Skills:</strong> Various programming languages</p>
+        <p><strong>Bio:</strong> Welcome to {{ username }}'s profile! This is a dynamic profile page.</p>
+        <p><strong>Note:</strong> This profile was generated dynamically based on the URL parameter.</p>
+    {% endif %}
+</div>
+
+<h2>🚀 Test the URL Parameter</h2>
+<p>The current URL parameter is: <strong style="color: #3498db;">{{ username }}</strong></p>
+<p>Try these different profile URLs to see how the parameter changes:</p>
+
+<div class="service-links">
+    <div class="service-card">
+        <a href="{{ url_for('user_profile', username='alice') }}">👩‍💻 Alice's Profile</a>
+        <p>Frontend Developer</p>
+    </div>
+    <div class="service-card">
+        <a href="{{ url_for('user_profile', username='demo') }}">🎯 Demo Profile</a>
+        <p>Generic user profile</p>
+    </div>
+</div>
+
+<h2>📋 URL Testing Guide</h2>
+<p>You can test the URL parameter by:</p>
+<ul>
+    <li>Typing <code>http://localhost:5000/user/alice</code> directly in your browser</li>
+    <li>Changing "alice" to any other name like "john", "mary", "test123"</li>
+    <li>Clicking the profile links above</li>
+    <li>Notice how the content changes based on the username</li>
+</ul>
+
+<div style="background-color: #e8f5e8; padding: 15px; border-radius: 5px; border-left: 4px solid #28a745;">
+    <h3>✅ Success Indicators:</h3>
+    <ul>
+        <li>The page title shows: "Profile: {{ username }}"</li>
+        <li>The URL in your browser shows: <code>/user/{{ username }}</code></li>
+        <li>The profile information updates based on the username</li>
+        <li>Different usernames show different content</li>
+    </ul>
+</div>
+
+<p><strong>Technical Note:</strong> This demonstrates how Flask captures URL segments as parameters using the route <code>/user/&lt;username&gt;</code></p>
+{% endblock %}

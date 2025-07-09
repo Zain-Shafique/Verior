@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Services - Flask App{% endblock %}
+
+{% block content %}
+<h1>Our Services</h1>
+<p>We offer a wide range of development services. Click on any service below to learn more:</p>
+
+<div class="service-links">
+    {% for key, value in services.items() %}
+    <div class="service-card">
+        <a href="{{ url_for('services', service_type=key) }}">{{ value }}</a>
+        <p>Learn more about our {{ value.lower() }} offerings</p>
+    </div>
+    {% endfor %}
+</div>
+
+<h2>Why Choose Our Services?</h2>
+<ul>
+    <li>Experienced development team</li>
+    <li>Modern technology stack</li>
+    <li>Agile development methodology</li>
+    <li>Quality assurance and testing</li>
+    <li>Ongoing support and maintenance</li>
+</ul>
+
+<p><strong>Note:</strong> This page demonstrates Flask's ability to pass data from routes to templates.</p>
+{% endblock %}
