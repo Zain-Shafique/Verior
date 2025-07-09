@@ -1,4 +1,4 @@
-# Flask Multi-Route Application Setup
+# Flask Multi-Route Application
 
 ## Directory Structure
 
